@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DGYZJ · 恋爱一周年纪念</title>
+    <title>DGY · 恋爱一周年纪念</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         * {
             margin: 0;
@@ -17,6 +18,12 @@
             color: #333;
             min-height: 100vh;
             overflow-x: hidden;
+            transition: background 0.5s;
+        }
+        
+        body.dark-theme {
+            background: linear-gradient(135deg, #2c003e, #4a0072);
+            color: #f0f0f0;
         }
         
         .container {
@@ -82,10 +89,18 @@
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
         }
         
+        .dark-theme h1 {
+            color: #ff79c6;
+        }
+        
         .subtitle {
             font-size: 1.2rem;
             color: #7b1fa2;
             margin-bottom: 20px;
+        }
+        
+        .dark-theme .subtitle {
+            color: #bd93f9;
         }
         
         .anniversary-date {
@@ -94,11 +109,19 @@
             margin: 10px 0;
         }
         
+        .dark-theme .anniversary-date {
+            color: #ff79c6;
+        }
+        
         .days-together {
             font-size: 1.3rem;
             color: #7b1fa2;
             margin: 15px 0;
             font-weight: bold;
+        }
+        
+        .dark-theme .days-together {
+            color: #bd93f9;
         }
         
         .countdown {
@@ -118,15 +141,27 @@
             min-width: 100px;
         }
         
+        .dark-theme .countdown-item {
+            background: rgba(50, 50, 70, 0.7);
+        }
+        
         .countdown-number {
             font-size: 2.5rem;
             font-weight: bold;
             color: #e91e63;
         }
         
+        .dark-theme .countdown-number {
+            color: #ff79c6;
+        }
+        
         .countdown-label {
             font-size: 1rem;
             color: #7b1fa2;
+        }
+        
+        .dark-theme .countdown-label {
+            color: #bd93f9;
         }
         
         section {
@@ -137,11 +172,19 @@
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
         }
         
+        .dark-theme section {
+            background: rgba(50, 50, 70, 0.8);
+        }
+        
         h2 {
             color: #e91e63;
             margin-bottom: 20px;
             text-align: center;
             font-size: 1.8rem;
+        }
+        
+        .dark-theme h2 {
+            color: #ff79c6;
         }
         
         .photo-gallery {
@@ -157,6 +200,7 @@
             position: relative;
             box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
             transition: transform 0.3s;
+            cursor: pointer;
         }
         
         .photo-item:hover {
@@ -190,6 +234,13 @@
             margin-bottom: 15px;
             font-size: 1rem;
             resize: vertical;
+            background: white;
+        }
+        
+        .dark-theme .message-form textarea {
+            border: 2px solid #bd93f9;
+            background: #2a2a3a;
+            color: #f0f0f0;
         }
         
         .message-form button {
@@ -207,6 +258,14 @@
             background: #c2185b;
         }
         
+        .dark-theme .message-form button {
+            background: #ff79c6;
+        }
+        
+        .dark-theme .message-form button:hover {
+            background: #ff52a8;
+        }
+        
         .message-wall {
             margin-top: 30px;
         }
@@ -219,11 +278,19 @@
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
         }
         
+        .dark-theme .message-item {
+            background: #2a2a3a;
+        }
+        
         .message-time {
             font-size: 0.9rem;
             color: #888;
             text-align: right;
             margin-top: 5px;
+        }
+        
+        .dark-theme .message-time {
+            color: #aaa;
         }
         
         .music-player {
@@ -245,6 +312,10 @@
             font-size: 1rem;
         }
         
+        .dark-theme .music-btn {
+            background: #bd93f9;
+        }
+        
         .music-btn i {
             margin-right: 8px;
         }
@@ -254,6 +325,290 @@
             padding: 30px 0;
             color: #7b1fa2;
             font-size: 1rem;
+        }
+        
+        .dark-theme footer {
+            color: #bd93f9;
+        }
+        
+        /* 新添加的样式 */
+        
+        .theme-toggle {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            z-index: 100;
+        }
+        
+        .dark-theme .theme-toggle {
+            background: rgba(50, 50, 70, 0.8);
+        }
+        
+        .timeline {
+            position: relative;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .timeline::after {
+            content: '';
+            position: absolute;
+            width: 6px;
+            background-color: #e91e63;
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            margin-left: -3px;
+        }
+        
+        .timeline-item {
+            padding: 10px 40px;
+            position: relative;
+            width: 50%;
+            box-sizing: border-box;
+        }
+        
+        .timeline-item::after {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background-color: white;
+            border: 4px solid #e91e63;
+            top: 15px;
+            border-radius: 50%;
+            z-index: 1;
+        }
+        
+        .left {
+            left: 0;
+        }
+        
+        .right {
+            left: 50%;
+        }
+        
+        .left::after {
+            right: -10px;
+        }
+        
+        .right::after {
+            left: -10px;
+        }
+        
+        .timeline-content {
+            padding: 20px;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        
+        .dark-theme .timeline-content {
+            background-color: #2a2a3a;
+        }
+        
+        .timeline-date {
+            font-weight: bold;
+            color: #e91e63;
+            margin-bottom: 10px;
+        }
+        
+        .dark-theme .timeline-date {
+            color: #ff79c6;
+        }
+        
+        .wish-list {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        
+        .wish-item {
+            display: flex;
+            align-items: center;
+            background: white;
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+        }
+        
+        .dark-theme .wish-item {
+            background: #2a2a3a;
+        }
+        
+        .wish-item input[type="checkbox"] {
+            margin-right: 15px;
+            transform: scale(1.3);
+        }
+        
+        .wish-text {
+            flex: 1;
+        }
+        
+        .completed {
+            text-decoration: line-through;
+            opacity: 0.7;
+        }
+        
+        .add-wish-form {
+            display: flex;
+            margin-top: 20px;
+        }
+        
+        .add-wish-form input {
+            flex: 1;
+            padding: 10px;
+            border: 2px solid #f8bbd9;
+            border-radius: 5px 0 0 5px;
+            font-size: 1rem;
+        }
+        
+        .dark-theme .add-wish-form input {
+            border: 2px solid #bd93f9;
+            background: #2a2a3a;
+            color: #f0f0f0;
+        }
+        
+        .add-wish-form button {
+            background: #e91e63;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 0 5px 5px 0;
+            cursor: pointer;
+        }
+        
+        .dark-theme .add-wish-form button {
+            background: #ff79c6;
+        }
+        
+        .love-quote {
+            text-align: center;
+            margin: 30px 0;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.7);
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        
+        .dark-theme .love-quote {
+            background: rgba(50, 50, 70, 0.7);
+        }
+        
+        .quote-text {
+            font-size: 1.2rem;
+            font-style: italic;
+            margin-bottom: 10px;
+        }
+        
+        .new-quote-btn {
+            background: #7b1fa2;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 20px;
+            cursor: pointer;
+        }
+        
+        .dark-theme .new-quote-btn {
+            background: #bd93f9;
+        }
+        
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .modal-content {
+            max-width: 90%;
+            max-height: 90%;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+        
+        .modal-content img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+        
+        .close-modal {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            color: white;
+            font-size: 40px;
+            cursor: pointer;
+        }
+        
+        .click-heart {
+            position: absolute;
+            font-size: 24px;
+            color: #ff4081;
+            pointer-events: none;
+            animation: clickHeart 1s forwards;
+        }
+        
+        @keyframes clickHeart {
+            0% {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+            100% {
+                opacity: 0;
+                transform: translateY(-50px) scale(1.5);
+            }
+        }
+        
+        .tabs {
+            display: flex;
+            margin-bottom: 20px;
+            border-bottom: 2px solid #f8bbd9;
+        }
+        
+        .dark-theme .tabs {
+            border-bottom: 2px solid #bd93f9;
+        }
+        
+        .tab {
+            padding: 10px 20px;
+            cursor: pointer;
+            border-bottom: 3px solid transparent;
+        }
+        
+        .tab.active {
+            border-bottom: 3px solid #e91e63;
+            font-weight: bold;
+        }
+        
+        .dark-theme .tab.active {
+            border-bottom: 3px solid #ff79c6;
+        }
+        
+        .tab-content {
+            display: none;
+        }
+        
+        .tab-content.active {
+            display: block;
         }
         
         @media (max-width: 768px) {
@@ -269,10 +624,32 @@
             .countdown-number {
                 font-size: 2rem;
             }
+            
+            .timeline::after {
+                left: 31px;
+            }
+            
+            .timeline-item {
+                width: 100%;
+                padding-left: 70px;
+                padding-right: 25px;
+            }
+            
+            .timeline-item::after {
+                left: 21px;
+            }
+            
+            .left::after, .right::after {
+                left: 21px;
+            }
         }
     </style>
 </head>
 <body>
+    <div class="theme-toggle" id="theme-toggle">
+        <i class="fas fa-moon"></i>
+    </div>
+    
     <div class="container">
         <header>
             <div class="hearts" id="hearts-container"></div>
@@ -301,10 +678,14 @@
             </div>
         </header>
         
+        <section class="love-quote">
+            <div class="quote-text" id="quote-text">点击按钮获取一句情话</div>
+            <button class="new-quote-btn" id="new-quote-btn">新情话</button>
+        </section>
+        
         <section class="memory-section">
             <h2>我们的美好回忆</h2>
             <div class="photo-gallery">
-                <!-- 这里可以替换为实际的照片 -->
                 <div class="photo-item">
                     <img src="https://i.postimg.cc/pdf2ShgB/1.jpg" alt="美好回忆">
                 </div>
@@ -328,40 +709,123 @@
                 <p>还记得我们第一次约会时的场景吗？那天晚上天桥，当脱口而出的喜欢成为加速心跳的良药。从那一刻起，我就知道，你就是我喜欢，爱的人。</p>
                 <p>这一年里，我们一起笑过、闹过，也一起相隔千里。每一次的相处都让我更加确信，和你在一起是我做过最正确的决定。你很好！</p>
                 <p>未来的路还很长，我希望能一直牵着你的手，一起走过每一个春夏秋冬，一起创造更多美好的回忆。</p>
-                <p>廿廿，爱你，不止今天，而是岁岁年年。</p>
-                <p>年年念念。</p>
+                <p>，廿廿，爱你，不止今天，而是岁岁年年。</p>
+            </div>
+        </section>
+        
+        <section class="timeline-section">
+            <h2>我们的恋爱时间轴</h2>
+            <div class="timeline">
+                <div class="timeline-item left">
+                    <div class="timeline-content">
+                        <div class="timeline-date">2024年11月7日</div>
+                        <p>我们正式在一起的第一天！那天晚上在天桥，我说出了对你的喜欢，从此开始了我们的故事。</p>
+                    </div>
+                </div>
+                <div class="timeline-item right">
+                    <div class="timeline-content">
+                        <div class="timeline-date">2024年12月24日</div>
+                        <p>我们一起度过的第一个平安夜，给你画的第一个圣诞树。</p>
+                    </div>
+                </div>
+                <div class="timeline-item left">
+                    <div class="timeline-content">
+                        <div class="timeline-date">2025年1月1日</div>
+                        <p>新年的第一天，我许下新的愿望，我希望岁岁年年。</p>
+                    </div>
+                </div>
+                <div class="timeline-item right">
+                    <div class="timeline-content">
+                        <div class="timeline-date">2025年2月14日</div>
+                        <p>我们的第一个情人节！虽然不能在一起，但我很想你。</p>
+                    </div>
+                </div>
+                <div class="timeline-item left">
+                    <div class="timeline-content">
+                        <div class="timeline-date">2025年5月20日</div>
+                        <p>520这一天，我们的第一个520，喜欢你。</p>
+                    </div>
+                </div>
+                <div class="timeline-item right">
+                    <div class="timeline-content">
+                        <div class="timeline-date">2025年8月</div>
+                        <p>这个月越来越喜欢你，讨厌异地，讨厌异地，讨厌异地。</p>
+                    </div>
+                </div>
+                <div class="timeline-item left">
+                    <div class="timeline-content">
+                        <div class="timeline-date">2025年11月7日</div>
+                        <p>我们的一周年，是在一起的365天。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section class="wish-section">
+            <h2>我们的心愿清单</h2>
+            <div class="wish-list" id="wish-list">
+                <!-- 心愿清单会在这里动态添加 -->
+            </div>
+            <div class="add-wish-form">
+                <input type="text" id="new-wish" placeholder="添加新的心愿...">
+                <button id="add-wish-btn">添加</button>
             </div>
         </section>
         
         <section class="message-section">
-            <h2>留下我们的纪念</h2>
-            <form class="message-form">
-                <textarea placeholder="写下你想对DGY说的话..."></textarea>
-                <button type="submit">保存留言</button>
-            </form>
+            <div class="tabs">
+                <div class="tab active" data-tab="message">留言墙</div>
+                <div class="tab" data-tab="diary">恋爱日记</div>
+            </div>
             
-            <div class="message-wall">
-                <div class="message-item">
-                    <p>点点，一周年快乐！我要我们一直在一起。</p>
-                    <div class="message-time">刚刚</div>
+            <div class="tab-content active" id="message-tab">
+                <h2>留下我们的纪念</h2>
+                <form class="message-form">
+                    <textarea placeholder="写下你想对DGY说的话..."></textarea>
+                    <button type="submit">保存留言</button>
+                </form>
+                
+                <div class="message-wall">
+                    <div class="message-item">
+                        <p>点点，一周年快乐！我要我们一直在一起。</p>
+                        <div class="message-time">刚刚</div>
+                    </div>
+                    <!-- 更多留言会在这里动态添加 -->
                 </div>
-                <!-- 更多留言会在这里动态添加 -->
+            </div>
+            
+            <div class="tab-content" id="diary-tab">
+                <h2>恋爱日记</h2>
+                <form class="message-form" id="diary-form">
+                    <textarea placeholder="记录今天我们的故事..."></textarea>
+                    <button type="submit">保存日记</button>
+                </form>
+                
+                <div class="message-wall" id="diary-wall">
+                    <!-- 日记会在这里动态添加 -->
+                </div>
             </div>
         </section>
         
         <div class="music-player">
             <button class="music-btn" id="music-toggle">
-                <i>♪</i> 播放我们的歌曲
+                <i class="fas fa-music"></i> 播放我们的歌曲
             </button>
             <audio id="bg-music" loop>
-                <!--https://music.163.com/#/song?id=2136889734 -->
-                <source src="https://mp3.joy127.com/music/12613.mp3"
+                <source src="https://mp3.joy127.com/music/12613.mp3" type="audio/mp3">
             </audio>
         </div>
     </div>
     
+    <div class="modal" id="image-modal">
+        <span class="close-modal">&times;</span>
+        <div class="modal-content">
+            <img id="modal-image" src="" alt="">
+        </div>
+    </div>
+    
     <footer>
-        <p>© 2024 与DGY的恋爱一周年纪念 | 设计制作: ZJ , Deepseek,and Douyin</p>
+        <p>© 2024 与DGY的恋爱一周年纪念 | 设计制作: ZJ , Deepseek, and Douyin</p>
     </footer>
 
     <script>
@@ -446,25 +910,56 @@
                 textarea.value = '';
                 
                 // 保存到本地存储
-                saveMessageToLocalStorage(message, timeString);
+                saveMessageToLocalStorage(message, timeString, 'messages');
             }
         });
         
-        // 保存留言到本地存储
-        function saveMessageToLocalStorage(message, time) {
-            let messages = JSON.parse(localStorage.getItem('anniversaryMessages')) || [];
+        // 日记功能
+        document.getElementById('diary-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const textarea = this.querySelector('textarea');
+            const message = textarea.value.trim();
+            
+            if (message) {
+                const diaryWall = document.getElementById('diary-wall');
+                const newMessage = document.createElement('div');
+                newMessage.className = 'message-item';
+                
+                const now = new Date();
+                const timeString = `${now.getFullYear()}-${now.getMonth() + 1}-${now.getDate()} ${now.getHours()}:${now.getMinutes()}`;
+                
+                newMessage.innerHTML = `
+                    <p>${message}</p>
+                    <div class="message-time">${timeString}</div>
+                `;
+                
+                diaryWall.insertBefore(newMessage, diaryWall.firstChild);
+                textarea.value = '';
+                
+                // 保存到本地存储
+                saveMessageToLocalStorage(message, timeString, 'diaries');
+            }
+        });
+        
+        // 保存留言/日记到本地存储
+        function saveMessageToLocalStorage(message, time, type) {
+            let messages = JSON.parse(localStorage.getItem(`anniversary${type}`)) || [];
             messages.unshift({message, time});
-            localStorage.setItem('anniversaryMessages', JSON.stringify(messages));
+            localStorage.setItem(`anniversary${type}`, JSON.stringify(messages));
         }
         
-        // 加载保存的留言
-        function loadMessagesFromLocalStorage() {
-            const messages = JSON.parse(localStorage.getItem('anniversaryMessages')) || [];
-            const messageWall = document.querySelector('.message-wall');
+        // 加载保存的留言/日记
+        function loadMessagesFromLocalStorage(type, containerId) {
+            const messages = JSON.parse(localStorage.getItem(`anniversary${type}`)) || [];
+            const messageWall = document.getElementById(containerId);
             
             // 清空现有留言（除了示例留言）
-            while (messageWall.children.length > 1) {
-                messageWall.removeChild(messageWall.lastChild);
+            if (type === 'messages') {
+                while (messageWall.children.length > 1) {
+                    messageWall.removeChild(messageWall.lastChild);
+                }
+            } else {
+                messageWall.innerHTML = '';
             }
             
             messages.forEach(msg => {
@@ -484,25 +979,167 @@
             
             if (audio.paused) {
                 audio.play().then(() => {
-                    this.innerHTML = '<i>♪</i> 暂停音乐';
+                    this.innerHTML = '<i class="fas fa-pause"></i> 暂停音乐';
                 }).catch(error => {
                     console.log('音频播放失败:', error);
                     alert('无法播放音乐，请检查音乐文件路径或网络连接');
                 });
             } else {
                 audio.pause();
-                this.innerHTML = '<i>♪</i> 播放我们的歌曲';
+                this.innerHTML = '<i class="fas fa-music"></i> 播放我们的歌曲';
             }
+        });
+        
+        // 主题切换
+        document.getElementById('theme-toggle').addEventListener('click', function() {
+            document.body.classList.toggle('dark-theme');
+            const icon = this.querySelector('i');
+            if (document.body.classList.contains('dark-theme')) {
+                icon.className = 'fas fa-sun';
+            } else {
+                icon.className = 'fas fa-moon';
+            }
+        });
+        
+        // 情话生成器
+        const loveQuotes = [
+            "我愿意在有限的时间里无限地爱着你。",
+            "我觉得爱情就是，你在的时候，你就是全世界；你不在的时候，全世界都是你。",
+            "我喜欢你，不是因为你有多完美，而是因为和你在一起时，我变得更像我自己。",
+            "我想和你一起慢慢变老，老到哪儿也去不了，我依然把你当成手心里的宝。",
+            "我喜欢春天的花，夏天的树，秋天的黄昏，冬天的阳光，还有每天的你。",
+            "我想把世界上最好的都给你，却发现世界上最好的就是你。",
+            "我爱你，不光因为你的样子，还因为，和你在一起时，我的样子。",
+            "我喜欢你，像风走了八千里，不问归期。",
+            "你是我温暖的手套，冰冷的啤酒，带着阳光味道的衬衫，日复一日的梦想。",
+            "我爱你，不光因为你的样子，还因为，和你在一起时，我的样子。"
+        ];
+        
+        document.getElementById('new-quote-btn').addEventListener('click', function() {
+            const randomIndex = Math.floor(Math.random() * loveQuotes.length);
+            document.getElementById('quote-text').textContent = loveQuotes[randomIndex];
+        });
+        
+        // 心愿清单功能
+        function loadWishList() {
+            const wishList = JSON.parse(localStorage.getItem('anniversaryWishes')) || [
+                { text: "一起去看极光", completed: false },
+                { text: "共同养一只宠物", completed: false },
+                { text: "去世界各地旅行", completed: false },
+                { text: "一起看日出日落", completed: true }
+            ];
+            
+            const wishListContainer = document.getElementById('wish-list');
+            wishListContainer.innerHTML = '';
+            
+            wishList.forEach((wish, index) => {
+                const wishItem = document.createElement('div');
+                wishItem.className = 'wish-item';
+                wishItem.innerHTML = `
+                    <input type="checkbox" id="wish-${index}" ${wish.completed ? 'checked' : ''}>
+                    <label for="wish-${index}" class="wish-text ${wish.completed ? 'completed' : ''}">${wish.text}</label>
+                `;
+                
+                wishListContainer.appendChild(wishItem);
+                
+                // 添加复选框变化事件
+                const checkbox = wishItem.querySelector('input');
+                checkbox.addEventListener('change', function() {
+                    wish.completed = this.checked;
+                    wishItem.querySelector('.wish-text').classList.toggle('completed', this.checked);
+                    saveWishList(wishList);
+                });
+            });
+            
+            // 保存初始心愿清单
+            if (!localStorage.getItem('anniversaryWishes')) {
+                saveWishList(wishList);
+            }
+        }
+        
+        function saveWishList(wishList) {
+            localStorage.setItem('anniversaryWishes', JSON.stringify(wishList));
+        }
+        
+        // 添加新心愿
+        document.getElementById('add-wish-btn').addEventListener('click', function() {
+            const newWishInput = document.getElementById('new-wish');
+            const newWishText = newWishInput.value.trim();
+            
+            if (newWishText) {
+                const wishList = JSON.parse(localStorage.getItem('anniversaryWishes')) || [];
+                wishList.push({ text: newWishText, completed: false });
+                saveWishList(wishList);
+                loadWishList();
+                newWishInput.value = '';
+            }
+        });
+        
+        // 图片模态框
+        const modal = document.getElementById('image-modal');
+        const modalImg = document.getElementById('modal-image');
+        const closeModal = document.querySelector('.close-modal');
+        
+        document.querySelectorAll('.photo-item img').forEach(img => {
+            img.addEventListener('click', function() {
+                modal.style.display = 'flex';
+                modalImg.src = this.src;
+            });
+        });
+        
+        closeModal.addEventListener('click', function() {
+            modal.style.display = 'none';
+        });
+        
+        modal.addEventListener('click', function(e) {
+            if (e.target === modal) {
+                modal.style.display = 'none';
+            }
+        });
+        
+        // 点击页面出现爱心
+        document.addEventListener('click', function(e) {
+            const heart = document.createElement('div');
+            heart.className = 'click-heart';
+            heart.innerHTML = '❤';
+            heart.style.left = `${e.pageX}px`;
+            heart.style.top = `${e.pageY}px`;
+            document.body.appendChild(heart);
+            
+            setTimeout(() => {
+                heart.remove();
+            }, 1000);
+        });
+        
+        // 标签页切换
+        document.querySelectorAll('.tab').forEach(tab => {
+            tab.addEventListener('click', function() {
+                // 移除所有标签的活动状态
+                document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+                // 隐藏所有标签内容
+                document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+                
+                // 激活当前标签
+                this.classList.add('active');
+                // 显示对应的内容
+                const tabId = this.getAttribute('data-tab');
+                document.getElementById(`${tabId}-tab`).classList.add('active');
+            });
         });
         
         // 初始化
         document.addEventListener('DOMContentLoaded', function() {
             createHearts();
             calculateAnniversary();
-            loadMessagesFromLocalStorage();
+            loadMessagesFromLocalStorage('messages', 'message-wall');
+            loadMessagesFromLocalStorage('diaries', 'diary-wall');
+            loadWishList();
             
             // 每秒更新倒计时
             setInterval(calculateAnniversary, 1000);
+            
+            // 自动播放音乐（需要用户交互，所以先注释掉）
+            // document.getElementById('bg-music').play();
         });
     </script>
 </body>
