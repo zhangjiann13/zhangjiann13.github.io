@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DGY · 恋爱一周年纪念</title>
+    <title>DGY&ZJ · 恋爱一周年纪念</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         * {
@@ -297,19 +297,26 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            margin-top: 20px;
+            margin: 20px 0;
         }
         
         .music-btn {
             background: #7b1fa2;
             color: white;
             border: none;
-            padding: 10px 20px;
+            padding: 12px 25px;
             border-radius: 30px;
             cursor: pointer;
             display: flex;
             align-items: center;
-            font-size: 1rem;
+            font-size: 1.1rem;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+        }
+        
+        .music-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.25);
         }
         
         .dark-theme .music-btn {
@@ -642,6 +649,11 @@
             .left::after, .right::after {
                 left: 21px;
             }
+            
+            .music-btn {
+                padding: 10px 20px;
+                font-size: 1rem;
+            }
         }
     </style>
 </head>
@@ -657,6 +669,16 @@
             <p class="subtitle">我们的爱情故事，从这一天开始</p>
             <p class="anniversary-date" id="anniversary-date"></p>
             <p class="days-together" id="days-together"></p>
+            
+            <!-- 将音乐播放器移到顶部 -->
+            <div class="music-player">
+                <button class="music-btn" id="music-toggle">
+                    <i class="fas fa-music"></i> 播放我们的歌曲
+                </button>
+                <audio id="bg-music" loop>
+                    <source src="https://mp3.joy127.com/music/12613.mp3" type="audio/mp3">
+                </audio>
+            </div>
             
             <div class="countdown">
                 <div class="countdown-item">
@@ -806,15 +828,6 @@
                 </div>
             </div>
         </section>
-        
-        <div class="music-player">
-            <button class="music-btn" id="music-toggle">
-                <i class="fas fa-music"></i> 播放我们的歌曲
-            </button>
-            <audio id="bg-music" loop>
-                <source src="https://mp3.joy127.com/music/12613.mp3" type="audio/mp3">
-            </audio>
-        </div>
     </div>
     
     <div class="modal" id="image-modal">
